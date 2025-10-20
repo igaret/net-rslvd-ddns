@@ -5,24 +5,24 @@ import { Dino } from "./types";
 import Link from "next/link";
 
 export default function Home() {
-  const [dinosaurs, setDinosaurs] = useState<Dino[]>([]);
+  const [domains, setdomains] = useState<Dino[]>([]);
 
   useEffect(() => {
     (async () => {
-      const response = await fetch(`/api/dinosaurs`);
-      const allDinosaurs = await response.json() as Dino[];
-      setDinosaurs(allDinosaurs);
+      const response = await fetch(`/api/domains`);
+      const alldomains = await response.json() as Dino[];
+      setdomains(alldomains);
     })();
   }, []);
 
   return (
     <main>
-      <h1>Welcome to the Dinosaur app</h1>
-      <p>Click on a dinosaur below to learn more.</p>
-      {dinosaurs.map((dinosaur: Dino) => {
+      <h1>Welcome to the domain app</h1>
+      <p>Click on a domain below to learn more.</p>
+      {domains.map((domain: Dino) => {
         return (
-          <Link key={dinosaur.name} className="btn-primary" href={`/${dinosaur.name.toLowerCase()}`}>
-            {dinosaur.name}
+          <Link key={domain.name} className="btn-primary" href={`/${domain.name.toLowerCase()}`}>
+            {domain.name}
           </Link>
         );
       })}
